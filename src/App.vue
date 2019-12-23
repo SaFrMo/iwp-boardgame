@@ -1,12 +1,31 @@
 <template>
     <div id="app">
-        <h2>Running</h2>
+        <h2>{{ G }}</h2>
     </div>
 </template>
 
 <script>
+import client from './game'
 export default {
-    name: 'app'
+    name: 'app',
+    data() {
+        return {
+            gameState: {}
+        }
+    },
+    computed: {
+        G() {
+            return this.gameState.G
+        },
+        ctx() {
+            return this.gameState.ctx
+        }
+    },
+    mounted() {
+        setInterval(() => {
+            this.gameState = { ...client.store.getState() }
+        }, 150)
+    }
 }
 </script>
 
