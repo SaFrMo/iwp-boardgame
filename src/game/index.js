@@ -38,13 +38,19 @@ const game = {
             )
         })
         if (winner) {
-            return winner
+            // get the mark of the winning row
+            const mark = G.board[winner[0]]
+
+            return mark
+        }
+
+        if (G.board.every(val => val)) {
+            return 'draw'
         }
     }
 }
 
 import { Client } from 'boardgame.io/client'
-
 const client = new Client({ game })
 client.start()
 
