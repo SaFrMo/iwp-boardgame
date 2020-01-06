@@ -47,6 +47,8 @@ export default {
         },
         markSquare(index) {
             client.moves.markSquare({ index, mark: 'X' })
+            // const mark = this.ctx.currentPlayer === '0' ? 'X' : 'O'
+            // client.moves.markSquare({ index, mark })
         }
     }
 }
