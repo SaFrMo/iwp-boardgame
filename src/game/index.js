@@ -14,6 +14,9 @@ const game = {
             G.board[index] = mark
         }
     },
+    turn: {
+        moveLimit: 1
+    },
     endIf(G, ctx) {
         // if any of these groups are all the same mark,
         // that mark wins

@@ -66,7 +66,7 @@ export default {
         margin: 40px auto;
         display: grid;
 
-        --side: 100px;
+        --side: 200px;
         grid-template-columns: repeat(3, var(--side));
         grid-template-rows: repeat(3, var(--side));
 
