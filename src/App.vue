@@ -7,10 +7,15 @@
 
         <!-- Game view -->
         <section class="game-view" v-if="G && showView">
+            <!-- Board -->
             <ul class="board">
-                <li v-for="(cell, i) in G.board" :key="i" class="cell">
-                    <span v-if="cell">{{ cell }}</span>
-                    <button class="claim" v-else @click="markSquare(i)">
+                <!-- Each square on the board -->
+                <li v-for="(square, i) in G.board" :key="i" class="square">
+                    <!-- X or O, if present -->
+                    <span v-if="square">{{ square }}</span>
+
+                    <!-- Button allowing player to claim space -->
+                    <button class="mark-square" v-else @click="markSquare(i)">
                         &nbsp;
                     </button>
                 </li>
@@ -45,6 +50,8 @@ export default {
         }
     }
 }
+
+// { index: 3, mark: 'X' }
 </script>
 
 <style lang="scss">
@@ -63,12 +70,12 @@ export default {
         grid-template-columns: repeat(3, var(--side));
         grid-template-rows: repeat(3, var(--side));
 
-        .cell {
+        .square {
             display: grid;
             align-items: center;
             text-align: center;
 
-            .claim {
+            .mark-square {
                 width: 100%;
                 height: 100%;
             }
