@@ -20,6 +20,17 @@
                     </button>
                 </li>
             </ul>
+
+            <!-- Game over state -->
+            <h2 v-if="fullGame && ctx.gameover">
+                <span>Game over: </span>
+                <span v-if="ctx.gameover === 'draw'">Draw!</span>
+                <span v-else>Winner: {{ ctx.gameover }}</span>
+            </h2>
+
+            <button v-if="!fullGame" @click="fullGame = true">
+                Final version
+            </button>
         </section>
     </div>
 </template>
@@ -33,6 +44,7 @@ export default {
     data() {
         return {
             showView: false,
+            fullGame: false,
             G: null,
             ctx: null
         }
@@ -46,14 +58,15 @@ export default {
             Vue.set(this, 'ctx', cloneDeep(ctx))
         },
         markSquare(index) {
-            client.moves.markSquare({ index, mark: 'X' })
-            // const mark = this.ctx.currentPlayer === '0' ? 'X' : 'O'
-            // client.moves.markSquare({ index, mark })
+            if (!this.fullGame) {
+                client.moves.markSquare({ index, mark: 'X' })
+            } else {
+                const mark = this.ctx.currentPlayer === '0' ? 'X' : 'O'
+                client.moves.markSquare({ index, mark })
+            }
         }
     }
 }
-
-// { index: 3, mark: 'X' }
 </script>
 
 <style lang="scss">
