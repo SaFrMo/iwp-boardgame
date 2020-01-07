@@ -24,8 +24,8 @@
             <!-- Game over state -->
             <h2 v-if="fullGame && ctx.gameover">
                 <span>Game over: </span>
-                <span v-if="ctx.gameover === 'draw'">Draw!</span>
-                <span v-else>Winner: {{ ctx.gameover }}</span>
+                <span v-if="ctx.gameover.draw">Draw!</span>
+                <span v-else>Winner: {{ ctx.gameover.mark }}</span>
             </h2>
 
             <button v-if="!fullGame" @click="fullGame = true">

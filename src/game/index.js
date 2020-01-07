@@ -1,4 +1,5 @@
 import { INVALID_MOVE } from 'boardgame.io/core'
+import { ai } from './bot'
 
 const game = {
     setup() {
@@ -44,17 +45,17 @@ const game = {
             // get the mark of the winning row
             const mark = G.board[winner[0]]
 
-            return mark
+            return { mark, winner: ctx.currentPlayer }
         }
 
         if (G.board.every(val => val)) {
-            return 'draw'
+            return { draw: true }
         }
     }
 }
 
 import { Client } from 'boardgame.io/client'
-const client = new Client({ game })
+const client = new Client({ game, ai })
 client.start()
 
 export default client
